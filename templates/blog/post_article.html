@@ -1,0 +1,60 @@
+{% extends '../base.html'%}
+
+
+{% block head%}
+<link rel="stylesheet" href="{{ static_url('blog/blog.css')}}">
+<style>
+    .title {
+        position: absolute;
+        left: 50vw;
+        width: 40vw;
+        transform: translateX(-50%);
+        top: 10vh;
+        height: 2rem;
+        border: 1px solid #dfe1e5;
+    }
+
+    .title input {
+        font-size: 1rem;
+        outline: none;
+        width: 100%;
+        height: 100%;
+        border: 1px;
+
+    }
+</style>
+{% end%}
+{% block title%}
+<title>编辑或发布文章</title>
+{% end%}
+
+{% block content%}
+<form action={{ request.path }} method="POST">
+    <div class="title"><input name="title" type="text" placeholder="标题" required></div>
+    <div class="container">
+        <div class="main">
+            <div class="text">
+                <textarea name="text" id="markdown" data-value="{{ article['text'] if article else '' }}"
+                          oninput="update_markdown()" placeholder="请在此输入markdwon格式"></textarea>
+            </div>
+            <div class="markdown">
+                <div id="html-markdown" data-value="{{ article['html'] if article else '' }}"></div>
+            </div>
+        </div>
+    </div>
+    <input id="article_post_btn" type="submit" class="submit">提交</input>
+</form>
+
+{% end%}
+{% block scripts%}
+<script src="{{ static_url('blog/blog.js') }}"></script>
+<script>
+    window.onload = function () {
+        var html_markdwon = document.querySelector("#html-markdown")
+        var text = document.querySelector("#markdown")
+        html_markdwon.innerHTML = html_markdwon.dataset.value
+        text.value = text.dataset.value
+    }
+</script>
+
+{% end%}

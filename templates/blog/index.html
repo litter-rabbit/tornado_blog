@@ -1,0 +1,92 @@
+{% extends '../base.html'%}
+
+{% block head%}
+<link rel="stylesheet" href="{{ static_url('blog/blog.css')}}">
+<style>
+    code{
+        display: none;
+    }
+</style>
+{% end%}
+{% block title%}
+<title>小兔子的小窝</title>
+{% end%}
+
+{% block content%}
+
+<section class="brand">
+    <div class="greet">
+        <div>
+            <ul class="greet-content">
+                <li class="character">H</li>
+                <li>i</li>
+                <li>,</li>
+                <li>L</li>
+                <li>R</li>
+                <li>a</li>
+                <li>b</li>
+                <li>b</li>
+                <li>i</li>
+                <li>t</li>
+            </ul>
+        </div>
+    </div>
+    <div class="search">
+        <div class="input-search">
+            <div class="search-box">
+
+                <i class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70%" height="70%" fill="currentColor"
+                         class="bi bi-search"
+                         viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </i>
+                <input type="text"/>
+            </div>
+
+        </div>
+        <div class="apps">
+            <ul class="items">
+                <li class="item">聊天室</li>
+                <li class="item">工具箱</li>
+                <li class="item">今日待做</li>
+                <li class="item">新闻汇总</li>
+                <li class="item">知乎热榜</li>
+                <li class="item">找到我</li>
+                <li class="item">听音乐</li>
+                <li class="item">看电影</li>
+
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="acticles">
+        {% for article in articles%}
+        <article class="article">
+            <div class="title">
+                    <h1><a href="/post_detail/?id={{ article['id'] }}">{{ article['title'] }}</a></h1>
+            </div>
+            <div class="detail">
+                <strong>发布时间: </strong><span>{{ article['published'] }}</span>
+
+            </div>
+            <div class="content">
+                <div>
+                    <p>{% raw article['html'] %}</p>
+                </div>
+            </div>
+        </article>
+
+        {% end%}
+
+
+    </div>
+</section>
+{% end%}
+
+{% block scripts%}
+
+{% end%}

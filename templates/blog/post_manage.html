@@ -1,0 +1,46 @@
+{% extends '../base.html'%}
+{% block head%}
+<link rel="stylesheet" href="{{ static_url('blog/blog.css')}}">
+{% end%}
+{%block title%}
+<title>管理文章</title>
+{%end%}
+
+{% block content %}
+<div>
+    <div class="article_search">
+        <input type="text" placeholder="搜索文章">
+        <button> 搜索</button>
+    </div>
+    <div class="table_container">
+        <table class="table_manage">
+            <thead>
+            <tr>
+                <td>标题</td>
+                <td>发布时间</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody class="tbody_manage">
+            {% for article in articles %}
+            <tr>
+                <td>{{ article['title'] }}</td>
+                <td>{{ article['updated'] }}</td>
+                <td>
+                    <button ><a type="button" href="/post_article/?id={{ article['id'] }}">管理</a></button>
+                    <button onclick="delete_post(this)" data-id="{{ article['id'] }}">删除</button>
+                </td>
+            </tr>
+            {% end %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% end%}
+
+{% block scripts%}
+<script src="{{ static_url('blog/blog.js') }}"></script>
+
+{% end%}
