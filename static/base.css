@@ -60,7 +60,7 @@ code{
     height: 8vh;
     position: fixed;
     right: 3vw;
-    top: 1vh;
+    top: 5vh;
     border-radius: 50%;
     z-index: 999;
 
@@ -68,9 +68,8 @@ code{
 
 
 #avatar-img {
-    border-radius: 50%;
-    height: 100%;
-    width: 50%;
+
+   height: 120%;
 }
 
 
