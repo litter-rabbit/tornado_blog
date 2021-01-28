@@ -13,7 +13,7 @@ class IndexHandler(BaseHandler):
 
     async def get(self):
         page_size = setting.page_size
-        sql = "select * from article limit {} offset {}".format(page_size, 0)
+        sql = "select * from article order by published desc limit {} offset {} ".format(page_size, 0)
         articles = await self.query(sql)
         self.render('blog/index.html', articles=articles)
 
@@ -90,7 +90,7 @@ class PostArticle(BaseHandler):
         if id:
             sql = "select * from article where id='{}'".format(id)
             article = await self.query_one(sql)
-
+        self.request.path = self.request.path + "?article_id={}".format(id)
         self.render('blog/post_article.html', article=article)
 
     def put(self):
@@ -109,11 +109,11 @@ class PostArticle(BaseHandler):
         html = aiomysql.escape_string(html)
         print(html)
         if id:
-            sql = "select count(*) from as count article where id='{}'".format(id)
-            result = self.query(sql)
+            sql = "select count(*) as count from  article where id='{}'".format(id)
+            result = await self.query(sql)
             if result[0]['count'] > 0:
                 sql = "update article set title='{}',text='{}',html='{}',updated='{}' where id={}".format(
-                    title, text, html, self.get_format_time(),
+                    title, text, html, self.get_format_time(),id
                 )
                 self.execute(sql)
 
