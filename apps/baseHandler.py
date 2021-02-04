@@ -66,3 +66,6 @@ class BaseHandler(RequestHandler):
         async with self.application.db.cursor() as cursor:
             await cursor.execute(sql)
             await self.application.db.commit()
+
+    def incr(self,key):
+        self.application.redis.incr(key)

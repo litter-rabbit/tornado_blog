@@ -4,12 +4,14 @@ import tornado.web
 import tornado.options
 import aiomysql
 import setting
+import redis
 
 
 class Application(tornado.web.Application):
 
-    def __init__(self,db):
+    def __init__(self,db,r):
         self.db = db
+        self.redis=r
         urls = self.get_urls()
         print('urls', urls)
         for url in urls:
@@ -39,8 +41,6 @@ class Application(tornado.web.Application):
 
 
 
-
-
 async def create_app():
 
     async with aiomysql.connect(
@@ -52,7 +52,9 @@ async def create_app():
         cursorclass=aiomysql.cursors.DictCursor
     ) as db:
         await db.ping()
-        application = Application(db)
+        r = redis.StrictRedis(host='127.0.0.1',db=1,decode_responses=True)
+        r.set('chat:num',1)
+        application = Application(db,r)
         return application
 
 
