@@ -25,6 +25,41 @@ window.onload = function () {
     updater.start();
     var showmessage = document.querySelector('.show_message')
     showmessage.scrollTop = showmessage.scrollHeight
+
+    setTimeout(function () {
+        console.log('测试')
+        var xreq = new XMLHttpRequest()
+        xreq.open('put', '/chat')
+        xreq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+        var number_node = document.querySelector('#chat_num')
+        xreq.onreadystatechange = function () {
+            if (xreq.readyState == 4 && (xreq.status == 200 || xreq.status == 304)) {
+                console.log('更新在线人数', xreq.responseText)
+                var peoples = JSON.parse(xreq.responseText)
+                number_node.innerHTML = peoples['chat_num']
+            }
+        }
+        xreq.send()
+
+    }, 100)
+
+    setInterval(function () {
+        console.log('测试')
+        var xreq = new XMLHttpRequest()
+        xreq.open('put', '/chat')
+        xreq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+        var number_node = document.querySelector('#chat_num')
+        xreq.onreadystatechange = function () {
+            if (xreq.readyState == 4 && (xreq.status == 200 || xreq.status == 304)) {
+                console.log('更新在线人数', xreq.responseText)
+                var peoples = JSON.parse(xreq.responseText)
+                number_node.innerHTML = peoples['chat_num']
+            }
+        }
+        xreq.send()
+
+    }, 10000)
+
 };
 
 function newMessage(text) {
@@ -58,3 +93,31 @@ var updater = {
 
     }
 };
+
+var shake = document.querySelector("#shake_me")
+
+shake.addEventListener('click', function () {
+
+    console.log('点击我')
+    xreq = new XMLHttpRequest()
+    var self = this
+    xreq.open('post', '/chat')
+    xreq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xreq.onreadystatechange = function () {
+
+        if (xreq.readyState == 4 && (xreq.status == 200 || xreq.status == 304)) {
+            console.log('返回的数据', xreq.responseText)
+            var status = JSON.parse(xreq.responseText)
+            if (status['status'] == 1) {
+                self.innerHTML = "别点了,正在上线啦!!!"
+            } else {
+                self.innerHTML = "好像出问题了,稍后提醒吧"
+            }
+        }
+    }
+    xreq.send()
+
+
+})
+
+

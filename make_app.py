@@ -53,7 +53,7 @@ async def create_app():
     ) as db:
         await db.ping()
         r = redis.StrictRedis(host='127.0.0.1',db=1,decode_responses=True)
-        r.set('chat:num',1)
+        r.set('chat:num',0)
         application = Application(db,r)
         return application
 

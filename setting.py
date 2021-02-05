@@ -12,3 +12,6 @@ template_path = os.path.join(os.path.dirname(__file__), 'templates')
 static_path = os.path.join(os.path.dirname(__file__), 'static')
 
 
+smtp_server='smtp.qq.com'
+email_admin='709343607@qq.com'
+email_password="aochpsyudjiibfia"

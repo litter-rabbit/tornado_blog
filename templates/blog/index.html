@@ -1,18 +1,19 @@
-{% extends '../base.html'%}
+{% extends '../base.html' %}
 
-{% block head%}
-<link rel="stylesheet" href="{{ static_url('blog/blog.css')}}">
+{% block head %}
+<link rel="stylesheet" href="{{ static_url('blog/blog.css') }}">
+
 <style>
-    code{
+    code {
         display: none;
     }
 </style>
-{% end%}
-{% block title%}
+{% end %}
+{% block title %}
 <title>小兔子的小窝</title>
-{% end%}
+{% end %}
 
-{% block content%}
+{% block content %}
 
 <section class="brand">
     <div class="greet">
@@ -48,14 +49,19 @@
         </div>
         <div class="apps">
             <ul class="items">
-                <a href="/chat"> <li class="item">聊天室</li></a>
-                <li class="item">工具箱</li>
-                <li class="item">今日待做</li>
-                <li class="item">新闻汇总</li>
-                <li class="item">知乎热榜</li>
-                <li class="item">找到我</li>
+                <a href="/chat">
+                    <li class="item">聊天室</li>
+                </a>
+                <a href="/tools/cyber">
+                    <li class="item">工具箱</li>
+                </a>
                 <li class="item">听音乐</li>
                 <li class="item">看电影</li>
+                <li class="item">今日待做</li>
+                <li class="item">热榜汇总</li>
+                <li class="item">知乎查词</li>
+                <li class="item">找到我</li>
+
 
             </ul>
         </div>
@@ -64,10 +70,10 @@
 
 <section>
     <div class="acticles">
-        {% for article in articles%}
+        {% for article in articles %}
         <article class="article">
             <div class="title">
-                    <h1><a href="/post_detail/?id={{ article['id'] }}">{{ article['title'] }}</a></h1>
+                <h1><a href="/post_detail/?id={{ article['id'] }}">{{ article['title'] }}</a></h1>
             </div>
             <div class="detail">
                 <strong>发布时间: </strong><span>{{ article['published'] }}</span>
@@ -80,13 +86,17 @@
             </div>
         </article>
 
-        {% end%}
-
+        {% end %}
 
     </div>
+
 </section>
-{% end%}
+<div id="aplayer1">
 
-{% block scripts%}
+</div>
+{% end %}
 
-{% end%}
+{% block scripts %}
+    <script src="{{ static_url('blog/blog.js') }}"></script>
+
+{% end %}
