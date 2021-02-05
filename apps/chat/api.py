@@ -26,7 +26,6 @@ class IndexHandle(BaseHandler):
             self.write({'status': 0})
 
     def put(self):
-
         chat_num = self.application.redis.get('chat:num')
         self.write({'chat_num': chat_num})
 

@@ -42,6 +42,7 @@
 .message {
     margin: 1vw;
     font-weight: bold;
+    font-size: 1.5rem;
 }
 
 .message small {
