@@ -7,5 +7,6 @@ urls = [(r'/', IndexHandler),
         (r'/manage_article/[^/]*',ManagePostHandler),
         (r'/post_detail/[^/]*',DetailArticle),
         (r'/login',LoginHandler),
-        (r'/closed',ClosedHandler)
+        (r'/closed',ClosedHandler),
+        (r'/find_me',FindMeHandler)
         ]

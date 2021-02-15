@@ -13,6 +13,11 @@ class ClosedHandler(BaseHandler):
 
     def get(self):
         self.render('blog/closed.html')
+
+class FindMeHandler(BaseHandler):
+
+    def get(self):
+        self.render('blog/find_me.html')
 class IndexHandler(BaseHandler):
 
     async def get(self):

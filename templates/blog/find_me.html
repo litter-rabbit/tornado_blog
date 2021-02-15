@@ -1,0 +1,58 @@
+{% extends '../base.html' %}
+
+{% block title %}
+    <title>找到我</title>
+{% end %}
+
+
+{% block head %}
+    <style>
+
+        .container{
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .social_account{
+            height: 5vh;
+            margin: 2vh;
+            font-size: 2rem;
+        }
+        .social_account img{
+            height: 4vh;
+            width: 2vw;
+            transform: translateY(0.5rem);
+        }
+        a{
+            color: #268bd2;
+        }
+        span{
+            font-size: 1.5rem;
+            color: rgba(128,128,128,0.8);
+        }
+
+
+
+    </style>
+
+{% end %}
+{% block content %}
+
+    <div class="container">
+        <div class="social_account">
+            <div> <img src="https://lrabbit.oss-cn-beijing.aliyuncs.com/bili.jpg"><a href="https://space.bilibili.com/86740777">哔哩哔哩</a></div>
+            <span>我的吉他指弹视频都在这里啦</span>
+        </div>
+        <div class="social_account">
+            <div> <img src="https://lrabbit.oss-cn-beijing.aliyuncs.com/github.jpg"><a href="https://github.com/litter-rabbit">github</a></div>
+            <span>我的开源项目都在这里啦</span>
+        </div>
+        <div class="social_account">
+            <div> <img src="https://lrabbit.oss-cn-beijing.aliyuncs.com/zhihu.jpg"><a href="https://www.zhihu.com/people/cai-zhi-chao-16">知乎</a></div>
+            <span>这里什么也没有啦</span>
+        </div>
+    </div>
+{% end %}
