@@ -7,6 +7,30 @@
     code {
         display: none;
     }
+
+    .life-words {
+        position: absolute;
+        left: 45vw;
+        text-align: center;
+        color: transparent;
+        font-size: 2rem;
+        background: linear-gradient(to right, #f4f5f7,black, #f4f5f7);
+        -webkit-background-clip: text;
+        background-size: 80%;
+        background-repeat: no-repeat;
+        animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+        0% {
+            background-position: -500%;
+        }
+        100% {
+            background-position: 500%;
+        }
+
+
+    }
 </style>
 {% end %}
 {% block title %}
@@ -55,17 +79,27 @@
                 <a href="/tools/cyber">
                     <li class="item">工具箱</li>
                 </a>
-                <li class="item">听音乐</li>
-                <li class="item">看电影</li>
-                <li class="item">今日待做</li>
-                <li class="item">热榜汇总</li>
-                <li class="item">知乎查词</li>
-                <li class="item">找到我</li>
+                <a href="/closed">
+                     <li class="item">听音乐</li>
+                </a>
 
-
+                <a href="/closed">
+                     <li  class="item">看电影</li>
+                </a>
+                <a href="/closed">
+                     <li  class="item">今日待做</li>
+                </a>
+                <a href="/closed">
+                      <li  class="item">热帖汇总</li>
+                </a>
+                   <a href="/closed">
+                      <li href="/closed" class="item">知乎查词</li>
+                </a>
+                <a href="/closed"><li class="item">找到我</li></a>
             </ul>
         </div>
     </div>
+    <div class="life-words">热爱技术,追求自由!</div>
 </section>
 
 <section>
@@ -97,6 +131,6 @@
 {% end %}
 
 {% block scripts %}
-    <script src="{{ static_url('blog/blog.js') }}"></script>
+<script src="{{ static_url('blog/blog.js') }}"></script>
 
 {% end %}

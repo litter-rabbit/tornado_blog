@@ -9,6 +9,10 @@ import bcrypt
 import tornado.ioloop
 
 
+class ClosedHandler(BaseHandler):
+
+    def get(self):
+        self.render('blog/closed.html')
 class IndexHandler(BaseHandler):
 
     async def get(self):
