@@ -14,10 +14,13 @@ class ClosedHandler(BaseHandler):
     def get(self):
         self.render('blog/closed.html')
 
+
 class FindMeHandler(BaseHandler):
 
     def get(self):
         self.render('blog/find_me.html')
+
+
 class IndexHandler(BaseHandler):
 
     async def get(self):
@@ -117,14 +120,16 @@ class PostArticle(BaseHandler):
         html = markdown.markdown(raw_text, extensions=['markdown.extensions.toc', 'markdown.extensions.fenced_code'])
         html = aiomysql.escape_string(html)
         print(html)
-        if id:
+
+        if id != 'None':
+
             sql = "select count(*) as count from  article where id='{}'".format(id)
             result = await self.query(sql)
             if result[0]['count'] > 0:
                 sql = "update article set title='{}',text='{}',html='{}',updated='{}' where id={}".format(
-                    title, text, html, self.get_format_time(),id
+                    title, text, html, self.get_format_time(), id
                 )
-                self.execute(sql)
+                await self.execute(sql)
 
         else:
             sql = "insert into article(`title`,`text`,`html`,`published`,`updated`,`is_published`) values('{}','{}','{}','{}','{}','{}')".format(
