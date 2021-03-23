@@ -30,5 +30,20 @@ class SubmitTask(BaseHandler):
         self.application.redis.lpush('list:task_ids', id)
         res={'status':1,
              'Msg':'success'}
+        response = self.application.redis.brpop('list:response',timeout=30)
+        res['data']=[{'response':response}]
         self.write(res)
+
+
+
+class PushResponse(BaseHandler):
+
+    async def post(self):
+        print('接受到response')
+        response = self.get_body_argument('data')
+        print('rseponse',response)
+        self.application.redis.lpush('list:response',response)
+
+
+
 
